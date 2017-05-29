@@ -7,8 +7,21 @@
         if($app->getResponse()->getStatus() === false) exit;
         
         $testLogin = new stdClass();
+        $testLogin->userId = 1;
         $testLogin->userName = "Barış";
         $testLogin->userSurName = "ATALAY";
+        
+        
+        /*
+         * Token Data Example
+         */
+        $tokenData = array(
+            "userId" => $testLogin->userId,
+            "userName" => $testLogin->userName,
+            "crtDate" => date(Constant::$format_datetime, time())
+        );
+        
+        $testLogin->token = $app->getTokenManager()->createToken($tokenData);
         
         $app->getResponse()->setData($testLogin);
         

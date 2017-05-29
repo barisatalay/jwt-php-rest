@@ -11,7 +11,7 @@ class TokenManager{
     private $token_key="secret";
     private $bearerRegex="/Bearer\s+(.*)$/i";
     
-    private $token_Data=array();
+    private $token_Data;
     
     private $lastError="";
     
@@ -51,11 +51,10 @@ class TokenManager{
     }
     
     
-    public function createToken($userId){
-        $tokenData = array(
-            "userId" => $userId,
-            "crtDate" => date(Constant::$format_datetime, time())
-        );
+    public function createToken($userData){
+        
+        
+        //$tokenData[] = $userData;
         
         /**
 		* IMPORTANT:
@@ -63,13 +62,20 @@ class TokenManager{
 		* https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
 		* for a list of spec-compliant algorithms.
 		*/
-		$jwt = JWT::encode($tokenData, Constant::$token_key);
+		$jwt = JWT::encode($userData, Constant::$token_key);
 		
 		return $jwt;
     }
     
     public function getError(){
         return $this->lastError;
+    }
+    
+    public function getTokenData(){
+        if($this->token_Data === null)
+            $this->token_Data = array();
+            
+        return $this->token_Data;
     }
 }
 

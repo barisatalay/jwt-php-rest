@@ -23,6 +23,10 @@ class JwtApplication extends Slim\Slim {
     }
     
     public function getTokenManager(){
+        if($tokenManager === null){
+            $this->tokenManager = new TokenManager();
+        }
+        
         return $this->tokenManager;
     }
     
