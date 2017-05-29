@@ -1,4 +1,8 @@
 <?php
+/*
+    Creator: Barış ATALAY 27.05.2017
+    Github: https://github.com/barisatalay/jwt-php-rest
+*/
 class Constant{
     public static $token_key = 'secret';
     public static $err_token_authorization = 'Authorization is not found';

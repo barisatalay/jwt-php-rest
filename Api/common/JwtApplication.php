@@ -1,4 +1,8 @@
 <?php
+/*
+    Creator: Barış ATALAY 27.05.2017
+    Github: https://github.com/barisatalay/jwt-php-rest
+*/
 class JwtApplication extends Slim\Slim {
 
     private $tokenManager;
@@ -13,7 +17,9 @@ class JwtApplication extends Slim\Slim {
             $this->tokenManager = new TokenManager();
         }
             
-        return $this->tokenManager->setToken($token);
+        $status = $this->tokenManager->setToken($token);
+        
+        return $status;
     }
     
     public function getTokenManager(){

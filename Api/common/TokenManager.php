@@ -1,4 +1,8 @@
 <?php
+/*
+    Creator: Barış ATALAY 27.05.2017
+    Github: https://github.com/barisatalay/jwt-php-rest
+*/
 use Firebase\JWT\JWT;
 
 class TokenManager{
@@ -40,6 +44,7 @@ class TokenManager{
             }
         }catch(Exception  $e ){
             $this->lastError = $e->getMessage();
+            return false;
         }
         
         return true;

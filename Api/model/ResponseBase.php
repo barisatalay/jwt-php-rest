@@ -1,11 +1,16 @@
 <?php
 /*
     Creator: Barış ATALAY 27.05.2017
+    Github: https://github.com/barisatalay/jwt-php-rest
 */
 class ResponseBase{
     public $data;
     
-    public $status="";
+    /*
+     * Default value is true;
+     * If there is any problem must be false;
+     */
+    public $status=true;
     
     public $description="";
     
