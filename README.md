@@ -7,7 +7,7 @@ P.S.: With Slim Framework v2
 ## Usage
 Example usage is in User.php
 
-##Header
+
 If you want check "Json Web Token" must be add 'authenticate' property and 
 
 send with header "Authorization: Bearer '...token...' "
