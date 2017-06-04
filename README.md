@@ -3,17 +3,15 @@ PHP Rest Api with JWT (Beginner level :))
 
 P.S.: With Slim Framework v2
 
-##JWT
+## JWT
 For information about JWT visit here: https://jwt.io/
-
-
-## Usage
-
-Example usage is in "controller\User.php"
 
 ## Database Config
 Database configuration defination in "DatabaseConfig.ini" for mysql.
 
+
+## Usage
+Example usage is in "controller\User.php"
 
 If you want check "Json Web Token" must be add 'authenticate' property and 
 
