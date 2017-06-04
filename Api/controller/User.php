@@ -6,25 +6,38 @@
         global $app;
         if($app->getResponse()->getStatus() === false) exit;
         
-        $testLogin = new stdClass();
-        $testLogin->userId = 1;
-        $testLogin->userName = "Barış";
-        $testLogin->userSurName = "ATALAY";
+        $user = R::getRow( 'Select * from user where userName=? and password=? and active=1 ',[ $app->getRequest()->userName, $app->getRequest()->password]);
+        $data = new stdClass();
         
+        if ($user === NULL || sizeof($user) == 0){
+            $app->getResponse()->setStatus(false);
+            $app->getResponse()->setDescription(Constant::$err_user_not_found);
+        }else{
+            /*
+             * Token Data Example
+             */
+            $tokenData = array(
+                "userId" => $user["recID"],
+                "userName" => $user["userName"],
+                "crtDate" => date(Constant::$format_datetime, time())
+            );
+            
+            $data->token = $app->getTokenManager()->createToken($tokenData);
+            
+            $app->getResponse()->setData($data);
+        }
+        echo $app->toJson(200); 
+    });
+    
+    $app->post('/GetUserDetail','authenticate', function() {
+        //$app = JwtApplication::getInstance();
+        global $app;
         
-        /*
-         * Token Data Example
-         */
-        $tokenData = array(
-            "userId" => $testLogin->userId,
-            "userName" => $testLogin->userName,
-            "crtDate" => date(Constant::$format_datetime, time())
-        );
+        if($app->getResponse()->getStatus() === false) exit;
         
-        $testLogin->token = $app->getTokenManager()->createToken($tokenData);
+        $data = R::getRow( 'Select * from userdetail where masterId=? ',[ $app->getTokenItem("userId")]);
         
-        $app->getResponse()->setData($testLogin);
-        
+        $app->getResponse()->setData($data);
         echo $app->toJson(200); 
     });
     

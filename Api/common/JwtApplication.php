@@ -47,5 +47,13 @@ class JwtApplication extends Slim\Slim {
         $this->status($statusCode);
         echo $this->responseItem->toJson();
     }
+    
+    public function getRequest(){
+        return json_decode($this->request->getBody());
+    }
+    
+    public function getTokenItem($key){
+        return $this->tokenManager->getTokenData()->$key;
+    }
 }
 ?>

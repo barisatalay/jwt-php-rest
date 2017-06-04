@@ -72,8 +72,9 @@ class TokenManager{
     }
     
     public function getTokenData(){
-        if($this->token_Data === null)
+        if($this->token_Data === null){
             $this->token_Data = array();
+        }
             
         return $this->token_Data;
     }

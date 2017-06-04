@@ -1,6 +1,7 @@
 {
     "require": {
         "slim/slim": "2.*",
-        "firebase/php-jwt": "^4.0"
+        "firebase/php-jwt": "^4.0",
+        "gabordemooij/redbean": "^4.3"
     }
 }
