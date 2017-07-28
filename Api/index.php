@@ -52,7 +52,9 @@
         $app->getResponse()->setStatus(false);
         $app->getResponse()->setDescription("Content-Type must be application/json");
         
-        $app->toJson(403);
+        //$app->toJson(403);
+        echo "Content-Type must be application/json";
+        $app->halt(403, json_encode($app->getResponse()));
     }
     
     foreach (glob($folder_Controller) as $controller){
@@ -60,13 +62,13 @@
     }
     
     function authenticate(\Slim\Route $route) {
-        //$app = JwtApplication::getInstance();
         global $app;
         if(!$app->setToken($app->request->headers->get('Authorization'))){
             $app->getResponse()->setStatus(false);
             $app->getResponse()->setDescription($app->getTokenManager()->getError());
             
-            $app->toJson(403);
+            //$app->toJson(403);
+            $app->halt(403,json_encode($app->getResponse()));
         }
     }
     
