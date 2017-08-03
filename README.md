@@ -30,8 +30,7 @@ Sample get to JSON Web Token (JWT)
 ```php
 $app->post('/Login', function() {
 	global $app;
-    if($app->getResponse()->getStatus() === false) exit;
-        
+            
     $user = R::getRow( 'Select * from user where userName=? and password=? and active=1 ',[ $app->getRequest()->userName, $app->getRequest()->password]);
     $data = new stdClass();
     
